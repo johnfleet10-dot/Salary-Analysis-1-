@@ -1,0 +1,55 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Sample data for a basic budget analysis
+data = {
+    "Category": [
+        "Salaries",
+        "Marketing",
+        "Operations",
+        "Technology",
+        "Travel",
+        "Miscellaneous"
+    ],
+    "Budgeted": [100000, 50000, 40000, 30000, 15000, 5000],
+    "Actual": [95000, 60000, 38000, 35000, 18000, 7000]
+}
+
+# Create DataFrame
+df = pd.DataFrame(data)
+
+# Calculate variance metrics
+df["Variance"] = df["Actual"] - df["Budgeted"]
+df["Variance %"] = (df["Variance"] / df["Budgeted"]) * 100
+
+# Sort by highest overspend
+df = df.sort_values(by="Variance", ascending=False)
+
+# Display formatted table
+print("\nBudget Variance Analysis\n")
+print(df.round(2))
+
+# Plot chart
+fig, ax = plt.subplots(figsize=(11, 6))
+
+bar_width = 0.4
+x = range(len(df))
+
+ax.bar(x, df["Budgeted"], width=bar_width, label="Budgeted")
+ax.bar(
+    [i + bar_width for i in x],
+    df["Actual"],
+    width=bar_width,
+    label="Actual"
+)
+
+# Formatting
+ax.set_title("Budgeted vs Actual Spending")
+ax.set_xlabel("Department")
+ax.set_ylabel("Amount ($)")
+ax.set_xticks([i + bar_width / 2 for i in x])
+ax.set_xticklabels(df["Category"], rotation=15)
+ax.legend()
+
+plt.tight_layout()
+plt.show()
