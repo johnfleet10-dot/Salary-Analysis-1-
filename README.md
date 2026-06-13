@@ -19,9 +19,13 @@ The dataset contains salary information for data and analytics professionals, in
 ## Analysis Performed
 
 * Salary by experience level
+  ![Salary by Experience](chart1_experience.png)
 * Highest-paying job categories
+  ![Top Jobs](chart2_top_jobs.png)
 * Salary trends
+  ![Salary Trend](chart3_salary_trend.png)
 * Remote work compensation analysis
+  ![Salary by Work Type](chart4_remote.png)
 
 ## Key Findings
 
